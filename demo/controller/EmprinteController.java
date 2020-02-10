@@ -92,12 +92,14 @@ public class EmprinteController {
         List<String> fingers=emprienteRepository.getFingrs();
         final  String FnVliderBiometrie =emprients.VliderBiometrie(fingers);
         if ((FnVliderBiometrie==null)){
-            return ResponseEntity.badRequest().body("deja exist");
+            return ResponseEntity.ok("deja exist");
 
+        }else{
+            return ResponseEntity.ok(FnVliderBiometrie);
         }
 
 
-        return ResponseEntity.ok(FnVliderBiometrie);
+   
 
     }
 
@@ -105,7 +107,7 @@ public class EmprinteController {
     public ResponseEntity insertuserf(@RequestBody   Userwithhashcode OneUserwithhashcode) {
         OneUserwithhashcode.User;
         OneUserwithhashcode.hashCode;
-        String  fingerprint="op";
+ 
         Optional<User> oldUser=userRepository.findFirstByCin(OneUserwithhashcode.User.getCin());
        // String hashcode="ss";
     if(oldUser.isPresent()) {
