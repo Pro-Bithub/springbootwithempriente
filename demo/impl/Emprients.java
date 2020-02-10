@@ -18,12 +18,11 @@ import java.util.Optional;
 @NoArgsConstructor
 @Service
 public class Emprients {
-
-
+private String finger;
     @Autowired
     EmprienteRepository emprienteRepository;
 
-    public String VliderBiometrie(List<String> fingers) {
+    public Boolean VliderBiometrie(List<String> fingers) {
 
 
         //System.out.println(null+"Valider Digital");
@@ -54,15 +53,15 @@ public class Emprients {
                 bsp.VerifyMatch(inputFIR, inputFIR2, bResult, payload);
             if (bsp.IsErrorOccured() == false) {
                 if (bResult) {
-
-                    return null ;
+                 this.SetFinger(finger);
+                    return true ;
                 }
 
             }
 
         }
-
-return textSavedFIR2.TextFIR;
+        this.SetFinger(textSavedFIR2.TextFIR);
+return false;
 
     }
     public String CaptureDigital() {

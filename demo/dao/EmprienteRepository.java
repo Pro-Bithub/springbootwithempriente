@@ -13,5 +13,6 @@ public interface EmprienteRepository extends JpaRepository<Empriente,String> {
 
     @Query("select e from Empriente e ")
     List<String>getFingrs();
+    Optional<Empriente> findByFingr(Long oneCustomerOrder);
 
 }
